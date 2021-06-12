@@ -8,25 +8,22 @@
         dense
         class="mb-3"
     ></v-text-field>
-    <div v-for="(blog,i) in filterBlog" :key="i" class="mb-9">
-        <v-card
-        elevation="2"
-        outlined
-        
-        >
-            <v-card-title>{{blog.title}}</v-card-title>
-            <v-card-text> <div class="font-italic caption">create by: {{blog.name}}</div></V-card-text>
-            <v-card-text><p v-html='blog.content'></p></v-card-text>
-        </v-card>
-        
-        <v-divider></v-divider>
-    </div>
+    <v-row>
+        <v-col sm="6" xs="1" md="4" lg="4" xl="4" cols="12" v-for="(blog,i) in filterBlog" :key="i" class="mb-9" @click="$router.push('/blog/'+blog.title)">
+            <BlogContentViewer :blog="blog" type="main"/>
+        </v-col>
+    </v-row>
+    
   </div>
 </template>
 
 <script>
+const BlogContentViewer = () => import("../components/BlogContentViewer.vue")
 
 export default{
+    components:{
+        BlogContentViewer
+    },
     computed:{
         blogs(){
             return this.$store.state.blogs;

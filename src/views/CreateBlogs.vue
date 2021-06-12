@@ -63,13 +63,14 @@ export default{
             this.$refs.form.resetValidation()
             this.snackbar = true;
             this.blogContent = {}
-            this.blogContent.editorData = '<p>Blog Content.</p>'
+            this.blogContent.editorData = '<p>Blog Content.</p>';
         },
         createBlogs(){
             this.$store.dispatch("action_update_blog",{
                 title: this.blogContent.title,
                 name:  this.blogContent.name + " at " + new Date(),
-                content: this.blogContent.editorData
+                content: this.blogContent.editorData,
+                time: new Date()
             })
             this.resetValues();
         }
